@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "redisApp",
+    "productName": "cooper_redis_disctop",
     "version": "0.0.0"
   },
   "tauri": {
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.cooper.redisApp",
+      "identifier": "com.cooper.redis_disctop",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -56,10 +56,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 800,
         "resizable": true,
-        "title": "redisApp",
-        "width": 800
+        "title": "cooper_redis_disctop",
+        "width": 1200
       }
     ]
   }
