@@ -17,8 +17,14 @@
     "skipLibCheck": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./node_modules/@vicons/ionicons5"
-    ]
+      "./node_modules/@vicons/ionicons5",
+      "./src/types"
+    ],
+    "paths": {
+      "@/*":[
+        "./src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",

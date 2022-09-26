@@ -14,6 +14,7 @@
     "eventbus.js": "^0.1.0",
     "lodash": "^4.17.21",
     "naive-ui": "^2.33.3",
+    "normalizecss": "^3.0.0",
     "tsrpc-browser": "^3.4.3",
     "vfonts": "^0.0.3",
     "vue": "^3.2.37",
