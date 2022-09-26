@@ -1,4 +1,6 @@
 <template>
+  <NMessageProvider>
+
   <n-layout has-sider>
     <n-layout-sider bordered content-style="padding: 24px; height:100vh" collapse-mode="transform">
       <NSpace>
@@ -36,10 +38,11 @@
       <template #footer> 尾部</template>
     </n-card>
   </NModal>
+</NMessageProvider>
 </template>
 
 <script lang="ts" setup>
-import {NButton, NCard, NIcon, NLayout, NLayoutContent, NLayoutSider, NModal, NSpace} from 'naive-ui';
+import {NButton, NCard, NIcon, NLayout, NLayoutContent, NLayoutSider, NModal, NSpace, NMessageProvider} from 'naive-ui';
 import {AddOutline, SettingsOutline} from '@vicons/ionicons5';
 import RedisLinkModule from './components/redisLinkModule/index.vue'
 import {reactive} from 'vue';

@@ -1,17 +1,17 @@
 <template>
   <n-card style="width: 620px" title="新建连接" :bordered="false" size="huge" role="dialog" aria-modal="true">
-    <NForm :role="role" :model="linkInfo" inline :label-width="200" ref="formRef">
+    <NForm :rules="role" :model="linkInfo" inline :label-width="200" ref="formRef">
       <n-grid :cols="24" :x-gap="24">
         <NFormItemGi :span="12" label="地址" path="ip">
           <NInput v-model:value.number="linkInfo.ip" placeholder="127.0.0.1"></NInput>
         </NFormItemGi>
         <NFormItemGi :span="12" label="端口" path="port">
-          <NInput v-model="linkInfo.port" placeholder="6379"></NInput>
+          <NInput v-model:value.number="linkInfo.port" placeholder="6379"></NInput>
         </NFormItemGi>
-        <NFormItemGi :span="12" label="用户名" path="username">
+        <NFormItemGi :span="12" label="用户名">
           <NInput v-model:value="linkInfo.username"></NInput>
         </NFormItemGi>
-        <NFormItemGi :span="12" label="密码" path="password">
+        <NFormItemGi :span="12" label="密码" >
           <NInput v-model:value="linkInfo.password" type="password"></NInput>
         </NFormItemGi>
         <NFormItemGi :span="24" label="连接名称" path="alias">
@@ -29,11 +29,13 @@
   </n-card>
 </template>
 <script lang="ts" setup>
-import { NButton, NCard, NForm, NFormItemGi, NGrid, NInput, NSpace, FormInst, FormItemRule } from 'naive-ui';
-import { reactive, ref } from 'vue';
-import { RedisLinkInfo } from '@/types';
+import {NButton, NCard, NForm, NFormItemGi, NGrid, NInput, NSpace, FormInst, FormItemRule, FormRules, useMessage} from 'naive-ui';
+import {reactive, ref} from 'vue';
+import {RedisLinkInfo} from '@/types';
+import _ from 'lodash';
+
 const formRef = ref<FormInst | null>(null);
-const props = defineProps({
+defineProps({
   value: Boolean
 });
 
@@ -46,29 +48,29 @@ const linkInfo = reactive<RedisLinkInfo>({
   password: '',
   alias: ''
 });
-const role = reactive({
-  ip: {
+const role = ref<FormRules>({
+  ip: [{
     required: true,
-    message: '请输入ip',
-    validator(rule: FormItemRule, value: string) {},
+    message: '请输入正确的ip',
+    validator(rule: FormItemRule, value: string) {
+      const reg = /^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$/
+      return  reg.test(value)
+    },
     trigger: ['input', 'blur']
-  },
-  port: {
+  }],
+  port: [{
     required: true,
     message: '请输入端口',
-    trigger: 'blur'
-  },
-  username: {
-    required: true,
-    message: '请输入用户名',
-    trigger: 'blur'
-  },
-  password: {
-    required: true,
-    message: '请输入密码',
-    trigger: 'blur'
-  }
+    validator(rule: FormItemRule, value: string) {
+      const reg = /^\d{4}$/ig
+      if(!reg.test(value) || Number(value)<0) return false;
+      return true
+    },
+    trigger:  ['input', 'blur']
+  }]
 });
+
+const message = useMessage()
 
 function cancel() {
   emit('change', false);
@@ -76,6 +78,15 @@ function cancel() {
 
 function ok() {
   // emit('change', false);
+  formRef.value?.validate(err=>{
+    if(err){
+      message.error('校验不通过!')
+      return;
+    }
+    console.log('[ linkInfo ] >',linkInfo )
+  })
+
+
 }
 </script>
 <style scoped lang="less"></style>
