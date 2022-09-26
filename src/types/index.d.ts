@@ -1,6 +1,6 @@
 export type RedisLinkInfo = {
   ip: string;
-  host: number;
+  port: number;
   username?: string;
   password?: string;
   alias?: string;

@@ -18,7 +18,8 @@
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@vicons/ionicons5",
-      "./src/types"
+      "./src/types",
+      "./node_modules/naive-ui"
     ],
     "paths": {
       "@/*":[
