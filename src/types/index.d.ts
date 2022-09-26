@@ -4,4 +4,5 @@ export type RedisLinkInfo = {
   username?: string;
   password?: string;
   alias?: string;
+  url?:string
 };

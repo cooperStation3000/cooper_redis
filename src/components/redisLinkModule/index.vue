@@ -14,8 +14,11 @@
         <NFormItemGi :span="12" label="密码" >
           <NInput v-model:value="linkInfo.password" type="password"></NInput>
         </NFormItemGi>
-        <NFormItemGi :span="24" label="连接名称" path="alias">
-          <NInput v-model:value="linkInfo.alias" placeholder="redis://username:password@host:port"></NInput>
+        <NFormItemGi :span="12" label="链接别名">
+          <NInput v-model:value="linkInfo.alias"></NInput>
+        </NFormItemGi>
+        <NFormItemGi :span="24" label="连接url" path="alias">
+          <NInput v-model:value="linkInfo.url" placeholder="redis://username:password@host:port"></NInput>
         </NFormItemGi>
       </n-grid>
     </NForm>
@@ -32,7 +35,6 @@
 import {NButton, NCard, NForm, NFormItemGi, NGrid, NInput, NSpace, FormInst, FormItemRule, FormRules, useMessage} from 'naive-ui';
 import {reactive, ref} from 'vue';
 import {RedisLinkInfo} from '@/types';
-import _ from 'lodash';
 
 const formRef = ref<FormInst | null>(null);
 defineProps({
@@ -46,7 +48,8 @@ const linkInfo = reactive<RedisLinkInfo>({
   port: 6379,
   username: '',
   password: '',
-  alias: ''
+  alias: '',
+  url:""
 });
 const role = ref<FormRules>({
   ip: [{
