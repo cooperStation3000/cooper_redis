@@ -11,11 +11,20 @@
   </n-card>
 </template>
 <script lang="ts" setup>
-import { NCard, NSpace, NButton } from 'naive-ui';
+import {NButton, NCard, NSpace} from 'naive-ui';
 
-function cancel() {}
+const props = defineProps({
+  value: Boolean
+})
+
+const emit = defineEmits(['change'])
+
+function cancel() {
+  emit('change', false);
+}
+
 function ok() {
-  
+  emit('change', false);
 }
 </script>
 <style scoped lang="less"></style>

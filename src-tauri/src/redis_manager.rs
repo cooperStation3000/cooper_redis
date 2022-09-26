@@ -1,5 +1,4 @@
 extern crate redis;
-
 use redis::Connection;
 
 pub fn get_redis_connection(db_url: &str) -> Connection {

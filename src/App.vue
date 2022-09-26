@@ -26,7 +26,7 @@
   </n-layout>
 
   <NModal v-model:show="moduleStatus.showAddLink">
-    <redisLinkModule v-model="moduleStatus.showAddLink"></redisLinkModule>
+    <RedisLinkModule :value="moduleStatus.showAddLink" @change="moduleHandler"></RedisLinkModule>
   </NModal>
 
   <NModal v-model:show="moduleStatus.showSetting">
@@ -41,7 +41,7 @@
 <script lang="ts" setup>
 import {NButton, NCard, NIcon, NLayout, NLayoutContent, NLayoutSider, NModal, NSpace} from 'naive-ui';
 import {AddOutline, SettingsOutline} from '@vicons/ionicons5';
-import redisLinkModule from './components/redisLinkModule/index.vue'
+import RedisLinkModule from './components/redisLinkModule/index.vue'
 import {reactive} from 'vue';
 
 
@@ -58,6 +58,11 @@ function createLink() {
 function showSetting() {
   moduleStatus.showSetting = true;
 }
+
+function moduleHandler(e: boolean) {
+  moduleStatus.showAddLink = e
+}
+
 </script>
 
 <style lang="less"></style>
