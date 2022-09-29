@@ -60,6 +60,7 @@ import {
 import { reactive, ref } from 'vue';
 import { RedisLinkInfo } from '@/types';
 import _ from 'lodash';
+import Storage from "@/util/storyClient";
 
 const formRef = ref<FormInst | null>(null);
 defineProps({
@@ -125,10 +126,8 @@ function ok() {
       useMessage().error('校验不通过!');
       return;
     }
-    const parms = modeFlag ? ['url'] : ['ip', 'port', 'username', 'password'];
-    const comm = ['alias'];
-    const data = _.pick(linkInfo, parms, comm);
-
+    Storage.setLinkItem(linkInfo);
+    emit('change', false);
   });
 }
 </script>

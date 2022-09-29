@@ -6,5 +6,13 @@ import 'normalizecss/normalize.css'
 // import 'vfonts/Lato.css'
 // 等宽字体
 import 'vfonts/FiraCode.css'
+import store from '@/vuex/vuex'
+import Storage from "@/util/storyClient";
 
-createApp(App).mount("#app");
+createApp(App).use(store).mount("#app")
+
+// init-link
+
+store.dispatch('setLink', Storage.getLinkList())
+
+
