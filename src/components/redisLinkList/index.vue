@@ -6,6 +6,16 @@
       :name="ele.ip"
       :key="ele.ip"
     >
+    <template #arrow>
+      <div></div>
+      <!-- <n-icon>
+        <cash-icon />
+      </n-icon> -->
+    </template>
+    <template #header-extra>
+      <!-- TODO: -->
+      </template>
+
       <!-- <div>{{ ele.ip }}@{{ ele.port }}</div> -->
     </n-collapse-item>
   </n-collapse>
