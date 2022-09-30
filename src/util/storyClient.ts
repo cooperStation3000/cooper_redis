@@ -1,5 +1,5 @@
 import {RedisLinkInfo} from '@/types';
-import {useStore} from 'vuex'
+import Stroy from '@/vuex/vuex'
 
 enum KEYS {
     LINK = 'link'
@@ -15,9 +15,8 @@ export default class Storage {
     public static setLinkItem(link: RedisLinkInfo) {
         const old = Storage.getLinkList();
         old.push(link);
-        (async () => {
-            await useStore().dispatch('setLink', link)
-        })()
+        //@ts-ignore
+        Stroy.state.links = old
         localStorage.setItem(KEYS.LINK, JSON.stringify(old));
 
     }

@@ -57,9 +57,8 @@ import {
   NSwitch,
   useMessage
 } from 'naive-ui';
-import { reactive, ref } from 'vue';
-import { RedisLinkInfo } from '@/types';
-import _ from 'lodash';
+import {reactive, ref} from 'vue';
+import {RedisLinkInfo} from '@/types';
 import Storage from "@/util/storyClient";
 
 const formRef = ref<FormInst | null>(null);
@@ -84,7 +83,7 @@ const role = reactive<FormRules>({
       message: '请输入正确的ip',
       validator(rule: FormItemRule, value: string) {
         const reg =
-          /^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$/;
+            /^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$/;
         return reg.test(value);
       },
       trigger: ['input', 'blur']
@@ -119,7 +118,7 @@ function cancel() {
   emit('change', false);
 }
 
-function ok() {
+async function ok() {
   // emit('change', false);
   formRef.value?.validate(err => {
     if (err) {
