@@ -7,6 +7,5 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Greet: typeof import('./src/components/Greet.vue')['default']
   }
 }

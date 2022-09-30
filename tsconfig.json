@@ -10,9 +10,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
     "lib": [
       "ESNext",
-      "DOM"
+      "DOM",
+      "DOM.Iterable",
+      "ScriptHost"
     ],
     "skipLibCheck": true,
     "typeRoots": [
