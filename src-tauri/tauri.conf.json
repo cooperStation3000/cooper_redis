@@ -58,9 +58,10 @@
         "label": "main",
         "fullscreen": false,
         "height": 800,
-        "resizable": true,
+        "resizable": false,
         "title": "cooper_redis",
-        "width": 1200
+        "width": 1200,
+        "minWidth": 1200
       }
     ]
   }

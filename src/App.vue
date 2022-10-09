@@ -88,6 +88,8 @@ function moduleHandler(e: boolean) {
 }
 
 .linkList {
-  margin-top: 30px;
+  margin-top: 40px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
 }
 </style>
