@@ -6,3 +6,7 @@ export enum KEYS {
   tag_color = '0005',
   delete_all_keys = '0006'
 }
+// base 为 当前链接的基本信息，info 则为 k/v 的信息
+export enum TabsInfoType {
+  base, info
+}
