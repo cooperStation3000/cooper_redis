@@ -1,29 +1,37 @@
 #![cfg_attr(
-all(not(debug_assertions), target_os = "windows"),
-windows_subsystem = "windows"
+    all(not(debug_assertions), target_os = "windows"),
+    windows_subsystem = "windows"
 )]
 
-use redis::Commands;
-
+use redis_manager::Manager;
+use std::sync::Mutex;
+use tauri::State;
 mod redis_manager;
+#[derive(Clone, serde::Serialize)]
+struct Payload {
+    message: String,
+}
 
-extern crate redis;
-
-
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str)-> &str{
-    let mut con = redis_manager::get_redis_connection("redis://127.0.0.1:6379/0");
-    let _: () = con.set("test", name).expect("set error");
-    name
+struct AppState {
+    redis_client: Mutex<Manager>,
 }
 
 fn main() {
-
-	
-
+    let redis_manager = redis_manager::Manager::init();
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
+        // .setup(|app| Ok(()))
+        .invoke_handler(tauri::generate_handler![get_redis_info,])
+        .manage(AppState {
+            redis_client: Mutex::from(redis_manager),
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+}
+
+#[tauri::command]
+fn get_redis_info(state: State<AppState>) -> String {
+    println!("get_redis_info");
+    let cli = state.redis_client.lock().unwrap();
+    let info = cli.client.get_connection_info();
+    info.addr.to_string()
 }

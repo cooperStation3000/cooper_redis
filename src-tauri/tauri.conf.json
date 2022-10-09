@@ -55,10 +55,11 @@
     },
     "windows": [
       {
+        "label": "main",
         "fullscreen": false,
         "height": 800,
         "resizable": true,
-        "title": "cooper_redis_disctop",
+        "title": "cooper_redis",
         "width": 1200
       }
     ]

@@ -8,7 +8,7 @@
               <n-button type="info" strong size="large" @click="createLink">
                 <template #icon>
                   <n-icon>
-                    <AddOutline />
+                    <AddOutline/>
                   </n-icon>
                 </template>
                 创建链接
@@ -16,7 +16,7 @@
               <n-button strong secondary size="large" @click="showSetting">
                 <template #icon>
                   <n-icon>
-                    <SettingsOutline />
+                    <SettingsOutline/>
                   </n-icon>
                 </template>
               </n-button>
@@ -24,13 +24,15 @@
           </div>
 
           <div class="linkList">
-            <RedisLinkList />
+            <RedisLinkList/>
           </div>
         </NSpace>
       </n-layout-sider>
 
       <n-layout>
-        <n-layout-content content-style="padding: 24px;"> 平山道</n-layout-content>
+        <n-layout-content content-style="padding: 24px;">
+          <Content/>
+        </n-layout-content>
       </n-layout>
     </n-layout>
 
@@ -49,21 +51,12 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  NButton,
-  NCard,
-  NIcon,
-  NLayout,
-  NLayoutContent,
-  NLayoutSider,
-  NMessageProvider,
-  NModal,
-  NSpace
-} from 'naive-ui';
-import { AddOutline, SettingsOutline } from '@vicons/ionicons5';
+import {NButton, NCard, NIcon, NLayout, NLayoutContent, NLayoutSider, NMessageProvider, NModal, NSpace} from 'naive-ui';
+import {AddOutline, SettingsOutline} from '@vicons/ionicons5';
 import RedisLinkModule from './components/redisLinkModule/index.vue';
 import RedisLinkList from './components/redisLinkList/index.vue';
-import { reactive } from 'vue';
+import {reactive} from 'vue';
+import Content from './content/index.vue'
 
 const moduleStatus = reactive({
   showAddLink: false,
@@ -93,7 +86,8 @@ function moduleHandler(e: boolean) {
   z-index: 99;
   padding-top: 20px;
 }
-.linkList{
+
+.linkList {
   margin-top: 30px;
 }
 </style>
