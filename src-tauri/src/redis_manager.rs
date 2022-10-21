@@ -1,4 +1,4 @@
-use redis::Client;
+use redis::{Client, ConnectionLike};
 
 pub struct Manager {
     pub client: Client,

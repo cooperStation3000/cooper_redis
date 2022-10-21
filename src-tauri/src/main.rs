@@ -1,18 +1,21 @@
 #![cfg_attr(
-    all(not(debug_assertions), target_os = "windows"),
-    windows_subsystem = "windows"
+all(not(debug_assertions), target_os = "windows"),
+windows_subsystem = "windows"
 )]
+
 use std::sync::Mutex;
+
 mod redis_manager;
-mod commands;
 mod dest;
+mod commands;
 
 fn main() {
     let redis_manager = redis_manager::Manager::init();
     tauri::Builder::default()
         // .setup(|app| Ok(()))
         .invoke_handler(tauri::generate_handler![
-        commands::get_redis_info
+            commands::get_redis_info,
+            commands::select_db,
         ])
         .manage(dest::AppState {
             redis_client: Mutex::from(redis_manager),
